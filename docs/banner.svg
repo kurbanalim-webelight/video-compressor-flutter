@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360" role="img" aria-label="Video Compressor - shrink big videos on your phone">
+  <defs>
+    <style>
+      .t { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif; }
+      .title { font-size: 66px; font-weight: 800; fill: #FFFFFF; letter-spacing: -1.5px; }
+      .tag { font-size: 25px; font-weight: 500; fill: #97A0AD; }
+      .pill { font-size: 17px; font-weight: 700; fill: #FFFFFF; letter-spacing: .3px; }
+      .num { font-size: 15px; font-weight: 700; fill: #101418; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="360" rx="20" fill="#101418"/>
+  <g opacity=".07" fill="none" stroke="#FFFFFF" stroke-width="1">
+    <path d="M0 90h1200M0 180h1200M0 270h1200"/>
+    <path d="M300 0v360M600 0v360M900 0v360"/>
+  </g>
+  <rect x="0" y="0" width="1200" height="5" rx="2.5" fill="#2E6BFF"/>
+
+  <!-- compression icon: a big frame squeezed into a small one -->
+  <g transform="translate(72 88)">
+    <rect x="0" y="0" width="184" height="184" rx="26" fill="#1A222C"/>
+    <rect x="26" y="34" width="132" height="116" rx="12" fill="none" stroke="#3A4655" stroke-width="3" stroke-dasharray="9 8"/>
+    <rect x="54" y="62" width="76" height="60" rx="9" fill="#2E6BFF"/>
+    <path d="M79 78l26 14-26 14z" fill="#FFFFFF"/>
+    <g stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M36 48h14v-14"/><path d="M148 48h-14v-14"/>
+      <path d="M36 136h14v14"/><path d="M148 136h-14v14"/>
+    </g>
+    <g stroke="#2E6BFF" stroke-width="4" stroke-linecap="round">
+      <path d="M14 92h16"/><path d="M154 92h16"/>
+    </g>
+  </g>
+
+  <text class="t title" x="300" y="150">Video Compressor</text>
+  <text class="t tag" x="302" y="196">Big videos in. Small videos out. All on the phone.</text>
+
+  <g transform="translate(302 232)">
+    <g>
+      <rect x="0" y="0" width="118" height="40" rx="20" fill="#2E6BFF"/>
+      <text class="t pill" x="59" y="26" text-anchor="middle">Flutter</text>
+    </g>
+    <g>
+      <rect x="130" y="0" width="232" height="40" rx="20" fill="#232C37"/>
+      <text class="t pill" x="246" y="26" text-anchor="middle">Hardware encoder</text>
+    </g>
+    <g>
+      <rect x="372" y="0" width="152" height="40" rx="20" fill="#232C37"/>
+      <text class="t pill" x="448" y="26" text-anchor="middle">No FFmpeg</text>
+    </g>
+    <g>
+      <rect x="534" y="0" width="196" height="40" rx="20" fill="#232C37"/>
+      <text class="t pill" x="632" y="26" text-anchor="middle">Works offline</text>
+    </g>
+  </g>
+
+  <!-- size bar: 120 MB -> 22 MB -->
+  <g transform="translate(302 300)">
+    <rect x="0" y="0" width="430" height="26" rx="13" fill="#39424E"/>
+    <rect x="0" y="0" width="96" height="26" rx="13" fill="#4ED08A"/>
+    <text class="t num" x="48" y="18" text-anchor="middle">22 MB</text>
+    <text class="t" x="410" y="18" text-anchor="end" font-size="15" font-weight="600" fill="#97A0AD">was 120 MB</text>
+  </g>
+</svg>

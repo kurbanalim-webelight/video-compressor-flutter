@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 620" width="1080" height="620" role="img" aria-label="Three app screens: pick a video, compressing, done">
+  <defs>
+    <style>
+      .t { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif; }
+      .h { font-size: 17px; font-weight: 700; fill: #101418; }
+      .b { font-size: 13px; font-weight: 500; fill: #626B78; }
+      .cap { font-size: 11px; font-weight: 600; fill: #97A0AD; letter-spacing: .6px; }
+      .btn { font-size: 13px; font-weight: 700; fill: #FFFFFF; }
+      .btno { font-size: 13px; font-weight: 700; fill: #101418; }
+      .num { font-size: 34px; font-weight: 800; fill: #101418; }
+      .step { font-size: 14px; font-weight: 700; fill: #101418; }
+    </style>
+    <clipPath id="p1"><rect x="52" y="70" width="256" height="500" rx="30"/></clipPath>
+    <clipPath id="p2"><rect x="412" y="70" width="256" height="500" rx="30"/></clipPath>
+    <clipPath id="p3"><rect x="772" y="70" width="256" height="500" rx="30"/></clipPath>
+  </defs>
+
+  <rect width="1080" height="620" fill="#F6F7F9"/>
+
+  <text class="t step" x="180" y="34" text-anchor="middle">1 &#183; Pick a video</text>
+  <text class="t b" x="180" y="54" text-anchor="middle">gallery or camera</text>
+  <rect x="46" y="64" width="268" height="512" rx="36" fill="#101418"/>
+  <g clip-path="url(#p1)">
+    <rect x="52" y="70" width="256" height="500" fill="#FFFFFF"/>
+    <text class="t h" x="76" y="103">Compress video</text>
+    <line x1="52" y1="122" x2="308" y2="122" stroke="#E3E6EB"/>
+    <rect x="76" y="150" width="208" height="128" rx="14" fill="#F6F7F9" stroke="#E3E6EB"/>
+    <circle cx="180" cy="200" r="22" fill="#EAF0FF"/>
+    <path d="M172 190l18 10-18 10z" fill="#2E6BFF"/>
+    <text class="t b" x="180" y="240" text-anchor="middle" font-weight="700" fill="#101418">holiday_clip.mp4</text>
+    <text class="t b" x="180" y="260" text-anchor="middle">1920x1080 &#183; 0:47 &#183; 118 MB</text>
+    <text class="t b" x="180" y="306" text-anchor="middle" font-size="11">Target 1080x1920 at 4.5 Mbps, 30 fps</text>
+    <rect x="76" y="330" width="208" height="44" rx="12" fill="#101418"/>
+    <text class="t btn" x="180" y="357" text-anchor="middle">Compress video</text>
+    <rect x="76" y="386" width="208" height="44" rx="12" fill="#FFFFFF" stroke="#E3E6EB"/>
+    <text class="t btno" x="180" y="413" text-anchor="middle">Choose a different video</text>
+    <text class="t b" x="180" y="452" text-anchor="middle" font-size="11">Compressed with your device encoder.</text>
+  </g>
+
+  <text class="t step" x="540" y="34" text-anchor="middle">2 &#183; Watch it shrink</text>
+  <text class="t b" x="540" y="54" text-anchor="middle">live progress, cancel anytime</text>
+  <rect x="406" y="64" width="268" height="512" rx="36" fill="#101418"/>
+  <g clip-path="url(#p2)">
+    <rect x="412" y="70" width="256" height="500" fill="#FFFFFF"/>
+    <text class="t h" x="436" y="103">Compressing</text>
+    <line x1="412" y1="122" x2="668" y2="122" stroke="#E3E6EB"/>
+    <circle cx="540" cy="240" r="66" fill="none" stroke="#EDEFF3" stroke-width="12"/>
+    <circle cx="540" cy="240" r="66" fill="none" stroke="#2E6BFF" stroke-width="12" stroke-linecap="round"
+            stroke-dasharray="414" stroke-dashoffset="145" transform="rotate(-90 540 240)"/>
+    <text class="t num" x="540" y="248" text-anchor="middle">65%</text>
+    <text class="t cap" x="540" y="268" text-anchor="middle">complete</text>
+    <text class="t h" x="540" y="336" text-anchor="middle">Compressing on-device</text>
+    <text class="t b" x="540" y="358" text-anchor="middle">Nothing leaves your phone.</text>
+    <rect x="436" y="382" width="100" height="58" rx="12" fill="#F6F7F9" stroke="#E3E6EB"/>
+    <text class="t cap" x="486" y="404" text-anchor="middle">TARGET</text>
+    <text class="t b" x="486" y="426" text-anchor="middle" font-weight="700" fill="#101418">1080x1920</text>
+    <rect x="544" y="382" width="100" height="58" rx="12" fill="#F6F7F9" stroke="#E3E6EB"/>
+    <text class="t cap" x="594" y="404" text-anchor="middle">BITRATE</text>
+    <text class="t b" x="594" y="426" text-anchor="middle" font-weight="700" fill="#101418">4.5 Mbps</text>
+    <rect x="436" y="464" width="208" height="44" rx="12" fill="#FFFFFF" stroke="#E3E6EB"/>
+    <text class="t btno" x="540" y="491" text-anchor="middle">Cancel</text>
+  </g>
+
+  <text class="t step" x="900" y="34" text-anchor="middle">3 &#183; Save or continue</text>
+  <text class="t b" x="900" y="54" text-anchor="middle">preview and keep it</text>
+  <rect x="766" y="64" width="268" height="512" rx="36" fill="#101418"/>
+  <g clip-path="url(#p3)">
+    <rect x="772" y="70" width="256" height="500" fill="#FFFFFF"/>
+    <text class="t h" x="796" y="103">Done</text>
+    <line x1="772" y1="122" x2="1028" y2="122" stroke="#E3E6EB"/>
+    <rect x="796" y="140" width="208" height="112" rx="14" fill="#101418"/>
+    <circle cx="900" cy="196" r="21" fill="#FFFFFF" opacity=".92"/>
+    <path d="M893 187l16 9-16 9z" fill="#101418"/>
+    <rect x="796" y="266" width="208" height="126" rx="14" fill="#E6F4EE" stroke="#CFE8DC"/>
+    <text class="t cap" x="814" y="290" fill="#0F7B4F">SPACE SAVED</text>
+    <text class="t" x="814" y="326" font-size="32" font-weight="800" fill="#0F7B4F">81%</text>
+    <text class="t b" x="988" y="326" text-anchor="end" font-weight="700" fill="#0F7B4F">96 MB smaller</text>
+    <line x1="814" y1="342" x2="988" y2="342" stroke="#CFE8DC"/>
+    <text class="t b" x="814" y="362">Original</text>
+    <text class="t b" x="988" y="362" text-anchor="end" font-weight="700" fill="#101418">118 MB</text>
+    <text class="t b" x="814" y="382">Compressed</text>
+    <text class="t b" x="988" y="382" text-anchor="end" font-weight="700" fill="#101418">22 MB</text>
+    <rect x="796" y="406" width="208" height="44" rx="12" fill="#101418"/>
+    <text class="t btn" x="900" y="433" text-anchor="middle">Save to gallery</text>
+    <rect x="796" y="462" width="208" height="44" rx="12" fill="#FFFFFF" stroke="#E3E6EB"/>
+    <text class="t btno" x="900" y="489" text-anchor="middle">Continue</text>
+    <text class="t b" x="900" y="530" text-anchor="middle" font-size="11">Start over</text>
+  </g>
+</svg>
