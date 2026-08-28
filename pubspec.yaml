@@ -1,0 +1,29 @@
+name: video_compression
+description: On-device smart video compression with hardware encoders.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  equatable: ^2.1.0
+  flutter_bloc: ^9.1.1
+  gal: ^2.3.3
+  get_it: ^9.2.1
+  image_picker: ^1.2.2
+  permission_handler: ^12.0.1
+  v_video_compressor: ^2.2.1
+  video_player: ^2.10.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true

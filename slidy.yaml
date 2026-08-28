@@ -1,0 +1,108 @@
+slidy: "1"
+
+scripts:
+  #* Dev IPA command (slidy run buildiOSDev)
+  #  Builds the development IPA, uploads it to Diawi and prints the QR code.
+  buildiOS:
+    description: "Build Development ipa, upload to Diawi and print the QR code"
+    steps:
+      - name: "Build Dev ipa"
+        condition: "${System.operatingSystem} == macos"
+        run: flutter build ipa --export-method development
+
+      - name: "Upload IPA to Diawi"
+        shell: bash
+        condition: "${System.operatingSystem} == macos"
+        run: |-
+          IPA_PATH=$(ls -t build/ios/ipa/*.ipa 2>/dev/null | head -n1)
+          if [ -z "$IPA_PATH" ] || [ ! -f "$IPA_PATH" ]; then
+            echo "Error: no IPA file found in build/ios/ipa/"
+            exit 1
+          fi
+          echo "IPA exists at $IPA_PATH."
+
+          # Ensure .env exists
+          if [ ! -f .env ]; then
+            echo "Error: .env file not found"
+            exit 1
+          fi
+
+          # Load environment variables
+          set -a
+          source .env
+          set +a
+
+          # Verify DIAWI_API_TOKEN is loaded
+          if [ -z "${DIAWI_API_TOKEN:-}" ]; then
+            echo "Error: DIAWI_API_TOKEN is not set in the .env file"
+            exit 1
+          fi
+
+          echo "DIAWI_API_TOKEN loaded successfully."
+
+          echo "Uploading to Diawi..."
+          UPLOAD_RESPONSE=$(curl -s -F "file=@$IPA_PATH" \
+              -F "token=$DIAWI_API_TOKEN" \
+              -F "wall_of_apps=true" \
+              https://upload.diawi.com/)
+
+          echo "Response from Diawi: $UPLOAD_RESPONSE"
+
+          # Handle empty response
+          if [ -z "$UPLOAD_RESPONSE" ]; then
+            echo "Error: No response from Diawi. Please check your network or Diawi API token."
+            exit 1
+          fi
+
+          # Extract job ID
+          JOB_ID=$(echo "$UPLOAD_RESPONSE" | grep -o '"job":"[^"]*' | sed 's/"job":"//')
+
+          if [ -z "$JOB_ID" ]; then
+            echo "Error: Unable to retrieve the job ID. Response: $UPLOAD_RESPONSE"
+            exit 1
+          fi
+
+          echo "Upload initiated. Job ID: $JOB_ID"
+
+          # Polling for the download link
+          echo "Polling for the download link..."
+          POLL_LIMIT=60  # Maximum polling attempts (5 minutes with 5-second intervals)
+          POLL_COUNT=0
+
+          while true; do
+            STATUS_RESPONSE=$(curl -s -G \
+                --data-urlencode "token=$DIAWI_API_TOKEN" \
+                --data-urlencode "job=$JOB_ID" \
+                https://upload.diawi.com/status)
+
+            echo "Status response: $STATUS_RESPONSE"  # Log for debugging
+
+            STATUS=$(echo "$STATUS_RESPONSE" | grep -o '"status":[0-9]*' | sed 's/"status"://')
+            LINK=$(echo "$STATUS_RESPONSE" | jq -r '.link')
+
+            if [ "$STATUS" -eq 0 ]; then
+              echo "Upload is still in progress..."
+            elif [ "$STATUS" -eq 2001 ]; then
+              echo "Processing, please try again in a few seconds..."
+            elif [ "$STATUS" -eq 1 ] || [ "$STATUS" -eq 2000 ]; then
+              if [ -z "$LINK" ]; then
+                echo "Error: Unable to extract the Diawi link. Status response: $STATUS_RESPONSE"
+                exit 1
+              fi
+              echo "Upload successful! Diawi link: $LINK"
+              qrencode -t ANSIUTF8 $LINK
+              break
+            else
+              echo "Error: Upload failed or encountered an issue. Status response: $STATUS_RESPONSE"
+              exit 1
+            fi
+
+            POLL_COUNT=$((POLL_COUNT + 1))
+            if [ "$POLL_COUNT" -ge "$POLL_LIMIT" ]; then
+              echo "Error: Timed out while waiting for the upload to complete."
+              exit 1
+            fi
+
+            # Wait for a few seconds before polling again
+            sleep 5
+          done
