@@ -33,6 +33,15 @@ final class CompressionProgressReported extends VideoCompressionEvent {
   List<Object?> get props => [fraction];
 }
 
+final class AppLifecycleChanged extends VideoCompressionEvent {
+  const AppLifecycleChanged(this.state);
+
+  final AppLifecycleState state;
+
+  @override
+  List<Object?> get props => [state];
+}
+
 final class FlowResetRequested extends VideoCompressionEvent {
   const FlowResetRequested();
 }

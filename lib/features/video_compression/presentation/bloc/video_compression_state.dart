@@ -12,6 +12,7 @@ class VideoCompressionState extends Equatable {
     this.progress = 0,
     this.outcome,
     this.failure,
+    this.stalledInBackground = false,
   });
 
   final VideoCompressionStatus status;
@@ -22,6 +23,10 @@ class VideoCompressionState extends Equatable {
   final double progress;
   final CompressionOutcome? outcome;
   final AppFailure? failure;
+
+  /// The app was backgrounded mid-encode on a platform that cannot continue,
+  /// so the job has probably stalled. Stays set until the next attempt.
+  final bool stalledInBackground;
 
   bool get isBusy => status == VideoCompressionStatus.picking || status == VideoCompressionStatus.analyzing;
 
@@ -34,6 +39,7 @@ class VideoCompressionState extends Equatable {
     double? progress,
     CompressionOutcome? outcome,
     AppFailure? failure,
+    bool? stalledInBackground,
     bool clearFailure = false,
     bool clearOutcome = false,
   }) {
@@ -46,9 +52,20 @@ class VideoCompressionState extends Equatable {
       progress: progress ?? this.progress,
       outcome: clearOutcome ? null : outcome ?? this.outcome,
       failure: clearFailure ? null : failure ?? this.failure,
+      stalledInBackground: stalledInBackground ?? this.stalledInBackground,
     );
   }
 
   @override
-  List<Object?> get props => [status, source?.path, metadata, thumbnailPath, plan, progress, outcome, failure];
+  List<Object?> get props => [
+    status,
+    source?.path,
+    metadata,
+    thumbnailPath,
+    plan,
+    progress,
+    outcome,
+    failure,
+    stalledInBackground,
+  ];
 }

@@ -8,6 +8,15 @@
         tools:replace="android:maxSdkVersion"/>
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
 
+    <!-- Keeps the process alive while the encoder runs. mediaProcessing is
+         the type that fits the work and exists from API 35; dataSync is the
+         fallback the platform accepts below that. Both are declared because
+         the service picks whichever the running platform accepts. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROCESSING"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
     <uses-feature android:name="android.hardware.camera" android:required="false"/>
     <application
         android:label="Video Compression"
@@ -35,6 +44,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <service
+            android:name=".CompressionService"
+            android:exported="false"
+            android:foregroundServiceType="mediaProcessing|dataSync"/>
+
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

@@ -10,6 +10,7 @@ import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_message_view.dart';
 import '../../../../core/widgets/labelled_value.dart';
 import '../bloc/video_compression_bloc.dart';
+import '../widgets/notice_banner.dart';
 
 class CompressionProgressScreen extends StatelessWidget {
   const CompressionProgressScreen({super.key});
@@ -79,6 +80,16 @@ class _ProgressView extends StatelessWidget {
             ),
           ),
         ),
+        if (state.stalledInBackground)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(AppSpacing.lg, 0, AppSpacing.lg, AppSpacing.lg),
+            child: const NoticeBanner(
+              icon: Icons.pause_circle_outline,
+              message: 'This device cannot compress while the app is in the background, '
+                  'so the job stalled when you left. Cancel and try again with the app open.',
+              tone: NoticeTone.danger,
+            ),
+          ),
         if (plan != null)
           Container(
             margin: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
